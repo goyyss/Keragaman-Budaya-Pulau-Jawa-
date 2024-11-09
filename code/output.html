@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Display Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Document Data</h2>
+        <div class="output">
+            <div><span class="label">Status Dokumen</span><span class="status">Aktif</span></div>
+            <div><span class="label">Nama Suami</span><span class="value" id="namaSuami"></span></div>
+            <div><span class="label">Nama Istri</span><span class="value" id="namaIstri"></span></div>
+            <div><span class="label">Tanggal Kawin</span><span class="value" id="tanggalKawin"></span></div>
+            <div><span class="label">No. Akta</span><span class="value" id="noAkta"></span></div>
+
+            <h3><b> Info Penandatangan</b></h3>
+            <div><span class="label">Daerah</span><span class="value" id="daerah"></span></div>
+            <div><span class="label">Lembaga</span><span class="value" id="lembaga"></span></div>
+            <div><span class="label">Penandatanganan</span><span class="value" id="penandatangan"></span></div>
+
+            <strong><h3>Informasi</h3></strong>
+            <div><span class="label">Tanggal Pindai</span><span class="value" id="tglPindai"></span></div>
+            <div><span class="label">Tgl. Penandatanganan</span><span class="value" id="tglPenandatanganan"></span></div>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve data from localStorage and populate fields
+        const data = JSON.parse(localStorage.getItem("formData"));
+
+        // Function to format ISO date (yyyy-mm-ddThh:mm) to "yyyy-mm-dd hh:mm"
+        function formatTanggal(tanggalISO) {
+            if (!tanggalISO) return "";
+            const [tanggal, waktu] = tanggalISO.split("T");
+            return `${tanggal} ${waktu}`;
+        }
+
+        if (data) {
+            document.getElementById("namaSuami").textContent = data.namaSuami;
+            document.getElementById("namaIstri").textContent = data.namaIstri;
+            document.getElementById("tanggalKawin").textContent = data.tanggalKawin;
+            document.getElementById("noAkta").textContent = data.noAkta;
+            document.getElementById("daerah").textContent = data.daerah;
+            document.getElementById("lembaga").textContent = data.lembaga;
+            document.getElementById("penandatangan").textContent = data.penandatangan;
+            document.getElementById("tglPindai").textContent = formatTanggal(data.tglPindai);
+            document.getElementById("tglPenandatanganan").textContent = formatTanggal(data.tglPenandatanganan);
+        }
+    </script>
+</body>
+</html>

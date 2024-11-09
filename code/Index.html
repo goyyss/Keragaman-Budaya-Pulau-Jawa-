@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Form</h2>
+        <form id="dataForm">
+            <label for="status">Status Dokumen:</label>
+            <select type="text" id="status" name="status" required>
+                <option value="Aktif">Aktif</option>
+                <option value="Tidak Aktif">Tidak Aktif</option>
+            </select>
+
+            <label for="namaSuami">Nama Suami:</label>
+            <input type="text" id="namaSuami" name="namaSuami">
+
+            <label for="namaIstri">Nama Istri:</label>
+            <input type="text" id="namaIstri" name="namaIstri">
+
+            <label for="tanggalKawin">Tanggal Kawin:</label>
+            <input type="date" id="tanggalKawin" name="tanggalKawin">
+
+            <label for="noAkta">No. Akta:</label>
+            <input type="text" id="noAkta" name="noAkta">
+
+            <label for="daerah">Daerah:</label>
+            <input type="text" id="daerah" name="daerah">
+
+
+            <label for="penandatangan">Penandatangan:</label>
+            <input type="text" id="penandatangan" name="penandatangan">
+
+            <label for="tglPindai">Tanggal Pindai:</label>
+            <input type="datetime-local" id="tglPindai" name="tglPindai">
+
+            <label for="tglPenandatanganan">Tanggal Penandatanganan:</label>
+            <input type="datetime-local" id="tglPenandatanganan" name="tglPenandatanganan">
+
+            <button type="button" onclick="saveData()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function saveData() {
+            const form = document.getElementById("dataForm");
+
+            const data = {
+                "status": form.status.value,
+                "namaSuami": form.namaSuami.value,
+                "namaIstri": form.namaIstri.value,
+                "tanggalKawin": form.tanggalKawin.value,
+                "noAkta": form.noAkta.value,
+                "daerah": form.daerah.value,
+                "penandatangan": form.penandatangan.value,
+                "tglPindai": form.tglPindai.value,
+                "tglPenandatanganan": form.tglPenandatanganan.value
+            };
+
+            // Save data to localStorage
+            localStorage.setItem("formData", JSON.stringify(data));
+
+            // Redirect to the output page
+            window.location.href = "output.html";
+        }
+    </script>
+</body>
+</html>
